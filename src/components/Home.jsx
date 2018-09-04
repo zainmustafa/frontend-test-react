@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+
 import TodoList from "./todolist/index.jsx";
 import TodoCreator from "./todolist/TodoCreator.jsx";
+import TodoAction from "../actions/todos.js";
 
-export default class Home extends Component {
+class Home extends Component {
     state = {
         showModal: false
     };
@@ -12,6 +16,7 @@ export default class Home extends Component {
     };
 
     render() {
+        const { postTodo } = this.props;
         return (
             <div className="home">
                 <div className="home-header">
@@ -25,9 +30,35 @@ export default class Home extends Component {
                         Add New
                     </button>
                 </div>
-                {this.state.showModal ? <TodoCreator toggleModal={this.toggleModal}/> : null}
+                {this.state.showModal ? (
+                    <TodoCreator
+                        isLoading={this.props.isLoading}
+                        postTodo={postTodo}
+                        toggleModal={this.toggleModal}
+                    />
+                ) : null}
                 <TodoList />
             </div>
         );
     }
 }
+
+Home.propTypes = {
+    postTodo: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+    isLoading: state.todos.isLoading
+});
+
+const mapDispatchToProps = dispatch => {
+    return {
+        postTodo: item => dispatch(TodoAction.postTodo(item))
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home);
