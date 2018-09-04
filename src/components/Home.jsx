@@ -25,7 +25,7 @@ export default class Home extends Component {
                         Add New
                     </button>
                 </div>
-                {this.state.showModal ? <TodoCreator /> : null}
+                {this.state.showModal ? <TodoCreator toggleModal={this.toggleModal}/> : null}
                 <TodoList />
             </div>
         );
