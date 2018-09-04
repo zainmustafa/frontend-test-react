@@ -14,6 +14,27 @@ export default class TodoCreator extends Component {
         this.setState(state);
     };
 
+    submitTodo = () => {
+        const { title, description, priority, tags } = this.state;
+        if ((title !== "", description !== "", priority !== "", tags !== "")) {
+            let tag = [];
+            tag.push(tags);
+            this.setState({ tags: tag, priority: Number(priority) }, () => {
+                this.props.postTodo(this.state);
+            });
+        }
+    };
+    componentWillReceiveProps() {
+        if (!this.props.isLoading) {
+            this.setState({
+                title: "",
+                description: "",
+                priority: "",
+                tags: ""
+            });
+        }
+    }
+
     render() {
         const { title, description, tags } = this.state;
         return (
@@ -64,14 +85,19 @@ export default class TodoCreator extends Component {
                             Tags (Seperated by commas)
                         </span>
                         <br />
-                        <input type="text" name="tags" value={tags} onChange={this.handleChange} />
+                        <input
+                            type="text"
+                            name="tags"
+                            value={tags}
+                            onChange={this.handleChange}
+                        />
                     </div>
                     <div className="todo-creator-form-input">
                         <button
                             className="todo-creator-form-btn"
                             name="add"
                             type="button"
-                            onClick={this.props.toggleModal}
+                            onClick={() => this.submitTodo()}
                         >
                             Add
                         </button>
