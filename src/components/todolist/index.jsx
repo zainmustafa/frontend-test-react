@@ -3,24 +3,22 @@ import ListItem from "./ListItem.jsx";
 import { connect } from "react-redux";
 
 import TodoAction from "../../actions/todos.js";
-const items= [];
 
 class TodoList extends Component {
-    componentDidMount(){
+    componentDidMount() {
         this.props.getAllNotes();
     }
     render() {
-        console.log({todo : this.props.nodeList})
+        const { nodeList } = this.props;
         return (
             <div className="todolist">
-                {items.map((v, i) => (
+                {nodeList.map((v, i) => (
                     <ListItem item={v} key={i.toString()} />
                 ))}
             </div>
         );
     }
 }
-
 
 const mapStateToProps = state => ({
     isLoading: state.todos.isLoading,
