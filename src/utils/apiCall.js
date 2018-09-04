@@ -17,14 +17,26 @@ export function get(id) {
     return processRequest(request);
 }
 
-export function post(body) {
+export function post(obj) {
+    const data = JSON.stringify(obj);
     const request = fetch(API_URL, {
         method: "POST",
-        mode: "no-cors",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(body)
+        body: data
+    });
+    return processRequest(request);
+}
+
+export function put(obj, id) {
+    const data = JSON.stringify(obj);
+    const request = fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: data
     });
     return processRequest(request);
 }
