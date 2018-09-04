@@ -1,29 +1,49 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
+import TodoAction from "../../actions/todos.js";
 
-export default class TodoDetails extends Component {
+class TodoDetails extends Component {
+    componentDidMount() {
+        this.props.getTodoDetails(this.props.id);
+    }
     render() {
+        const { nodeDetail } = this.props;
         return (
             <div className="tododetails">
                 <div className="tododetails-inner-item">
-                    <span>Title: </span> {details.title}
+                    <span>Title: </span> {nodeDetail.title}
                 </div>
 
                 <div className="tododetails-inner-item">
-                    <span>Description: </span> {details.description}
+                    <span>Description: </span> {nodeDetail.description}
                 </div>
 
                 <div className="tododetails-inner-item">
-                    <span>Priority: </span> {details.priority}
+                    <span>Priority: </span> {nodeDetail.priority}
                 </div>
 
                 <div className="tododetails-inner-item">
                     <span>Tags: </span>
-                    {
-                        details.tags.map((v) => `${v}, `)
-                    }
+                    {nodeDetail.tags && nodeDetail.tags.map(v => `${v}, `)}
                 </div>
             </div>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    isLoading: state.todos.isLoading,
+    nodeDetail: state.todos.nodeDetail
+});
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getTodoDetails: state => dispatch(TodoAction.getTodoDetails(state))
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodoDetails);
