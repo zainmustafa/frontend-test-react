@@ -26,7 +26,8 @@ module.exports = {
                 use: {
                     loader: "babel-loader"
                 }
-            }
+            },
+            
         ]
     },
     plugins: [
@@ -34,5 +35,8 @@ module.exports = {
             template: "./public/index.html",
             filename: "./index.html"
         })
-    ]
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    }
 };
