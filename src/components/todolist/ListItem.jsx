@@ -1,37 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TodoDetails from "./TodoDetails.jsx";
-
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import ExpandLess from "@material-ui/icons/ExpandLess";
 
 export default class ListItem extends React.Component {
-    state = {
-        showDetails: false
-    };
-
-    toggleDetails = () => {
-        this.setState({
-            showDetails: !this.state.showDetails
-        });
-    };
-
     render() {
-        const { item } = this.props;
-        const tempDate = new Date(item.createdAt);
+        const {
+            todo,
+            index,
+            showSubCategory,
+            categoryIndex,
+            updateIndex,
+            updateTodo
+        } = this.props;
 
-        const date =
-            `${tempDate.getDate()
-            }/${
-                tempDate.getMonth()
-            }/${
-                tempDate.getFullYear()}`;
-
+        const tempDate = new Date(todo.createdAt);
+        const date = `${tempDate.getDate()}/${tempDate.getMonth()}/${tempDate.getFullYear()}`;
         return (
             <React.Fragment>
-                <div className="listitem" onClick={this.toggleDetails}>
+                <div className="listitem">
                     <div className="listitem-left">
                         <span className="listitem-left-date">{date}</span>
                         <span className="listitem-left-title">
-                            {item.title}
+                            {todo.title}
                         </span>
                     </div>
                     <div className="listitem-right">
@@ -40,12 +32,23 @@ export default class ListItem extends React.Component {
                             type="checkbox"
                             name="vehicle"
                             value="Car"
-                            checked={item.isDone}
+                            checked={todo.isDone}
+                            onChange={() => updateTodo(todo)}
                         />
+
+                        {categoryIndex === index ? (
+                            <span onClick={() => updateIndex(index)}>
+                                <ExpandLess />
+                            </span>
+                        ) : (
+                            <span onClick={() => updateIndex(index)}>
+                                <ExpandMore />
+                            </span>
+                        )}
                     </div>
                 </div>
-                {this.state.showDetails ? (
-                    <TodoDetails display={this.state.showDetails} id={item.id} />
+                {showSubCategory && index === categoryIndex ? (
+                    <TodoDetails display={showSubCategory} id={todo.id} />
                 ) : null}
             </React.Fragment>
         );
@@ -53,5 +56,10 @@ export default class ListItem extends React.Component {
 }
 
 ListItem.propTypes = {
-    item: PropTypes.object.isRequired
-}
+    categoryIndex: PropTypes.number.isRequired,
+    index: PropTypes.number.isRequired,
+    showSubCategory: PropTypes.bool.isRequired,
+    todo: PropTypes.object.isRequired,
+    updateIndex: PropTypes.func.isRequired,
+    updateTodo: PropTypes.func.isRequired
+};
