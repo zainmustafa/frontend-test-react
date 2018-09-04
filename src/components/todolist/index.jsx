@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ListItem from "./ListItem.jsx";
 import { connect } from "react-redux";
 
+import Spinner from "../Spinner.jsx";
 import TodoAction from "../../actions/todos.js";
 
 class TodoList extends Component {
@@ -9,12 +10,16 @@ class TodoList extends Component {
         this.props.getAllNotes();
     }
     render() {
-        const { nodeList } = this.props;
+        const { nodeList, isLoading } = this.props;
         return (
             <div className="todolist">
-                {nodeList.map((v, i) => (
-                    <ListItem item={v} key={i.toString()} />
-                ))}
+                {isLoading ? (
+                    <Spinner />
+                ) : (
+                    nodeList.map((v, i) => (
+                        <ListItem item={v} key={i.toString()} />
+                    ))
+                )}
             </div>
         );
     }
