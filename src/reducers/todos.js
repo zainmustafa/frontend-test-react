@@ -3,7 +3,7 @@ import ActionType from "../actions/actionsTypes.js";
 
 const initialState = {
     isLoading: false,
-    todoList : []
+    nodeList : []
 };
 
 export default (state = initialState, action) => {
@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
         case ActionType.GET_TODO_SUCCESS:
             return {
                 ...state,
-                todoList : action.payload,
+                nodeList : action.payload,
                 isLoading: false
             };
 
