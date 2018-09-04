@@ -26,11 +26,33 @@ export default class TodoAction {
 
     /**
     |--------------------------------------------------
-    | TODO Actions
+    | Get Todo Details
     |--------------------------------------------------
     */
 
-    static getAllNotes1(note) {
+   static getTodoDetails(id) {
+    return dispatch => {
+        dispatch(actionDispatch(ActionType.GET_TODO_DETAIL));
+        get(id)
+            .then(response => {
+                dispatch(
+                    actionDispatch(ActionType.GET_TODO_DETAIL_SUCCESS, response)
+                );
+            })
+            .catch(error => {
+                dispatch(actionDispatch(ActionType.GET_TODO_DETAIL_FAIL, error));
+            });
+    };
+}
+
+
+    /**
+    |--------------------------------------------------
+    | Post Todo
+    |--------------------------------------------------
+    */
+
+    static postTodo(note) {
         return dispatch => {
             dispatch(actionDispatch(ActionType.GET_));
             post(note)
