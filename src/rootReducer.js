@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import todos from './reducers/todos';
+import todos from "./reducers/todos";
 
 const appReducer = combineReducers({
-  todos,
+    todos,
 });
 
 export default (state, action) => {
-  const nextState = { ...state };
-  return appReducer(nextState, action);
+    const nextState = { ...state };
+    return appReducer(nextState, action);
 };

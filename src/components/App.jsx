@@ -1,17 +1,20 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
+import { Provider } from "react-redux";
 
-import Header from './Header.jsx';
+import Header from "./Header";
 
-const App = ({ store }) => {
-  return (
+const App = ({ store }) => (
     <Provider store={store}>
-      <div>
-        <Header/>
-        <div className="view">Some todos should be here</div>
-      </div>
+        <div>
+            <Header/>
+            <div className="view">Some todos should be here</div>
+        </div>
     </Provider>
-  );
-};
+);
+
+App.propTypes = {
+    store : PropTypes.object.isRequired
+}
 
 export default App;

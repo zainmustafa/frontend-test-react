@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Header = () => {
-  return (
+const Header = () => (
     <header>
-      <img src="https://static.pi-top.com/images/logo/black-344x140.png" />
+        <img alt="logo" src="https://static.pi-top.com/images/logo/black-344x140.png" />
     </header>
-  );
-};
+);
 
 export default Header;
