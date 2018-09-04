@@ -1,5 +1,4 @@
-import forEach from "lodash/forEach";
-import ActionType from "../actions/actionsTypes.js";
+import ActionType from "../actions/actionsTypes";
 
 const initialState = {
     isLoading: false,
@@ -33,7 +32,7 @@ export default (state = initialState, action) => {
             return { ...state, isLoading: false };
 
         // Get Note Details
-        case ActionType.GET_TODO_DETAIL:
+        case ActionType.GET_TODO_DETAIL: {
             const tempNodeDetail = {
                 id: "",
                 title: "",
@@ -48,7 +47,7 @@ export default (state = initialState, action) => {
                 nodeDetail: tempNodeDetail,
                 detailLoading: true
             };
-
+        }
         case ActionType.GET_TODO_DETAIL_SUCCESS:
             return {
                 ...state,

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class TodoCreator extends Component {
     state = {
@@ -8,22 +9,6 @@ export default class TodoCreator extends Component {
         tags: ""
     };
 
-    handleChange = e => {
-        const state = this.state;
-        state[e.target.name] = e.target.value;
-        this.setState(state);
-    };
-
-    submitTodo = () => {
-        const { title, description, priority, tags } = this.state;
-        if ((title !== "", description !== "", priority !== "", tags !== "")) {
-            let tag = [];
-            tag.push(tags);
-            this.setState({ tags: tag, priority: Number(priority) }, () => {
-                this.props.postTodo(this.state);
-            });
-        }
-    };
     componentWillReceiveProps() {
         if (!this.props.isLoading) {
             this.setState({
@@ -34,6 +19,23 @@ export default class TodoCreator extends Component {
             });
         }
     }
+
+    handleChange = e => {
+        const state = Object.assign({},this.state);
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+    };
+
+    submitTodo = () => {
+        const { title, description, priority, tags } = this.state;
+        if ((title !== "", description !== "", priority !== "", tags !== "")) {
+            const tag = [];
+            tag.push(tags);
+            this.setState({ tags: tag, priority: Number(priority) }, () => {
+                this.props.postTodo(this.state);
+            });
+        }
+    };
 
     render() {
         const { title, description, tags } = this.state;
@@ -107,3 +109,8 @@ export default class TodoCreator extends Component {
         );
     }
 }
+
+TodoCreator.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    postTodo: PropTypes.func.isRequired
+};

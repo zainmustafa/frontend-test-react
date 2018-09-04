@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 
-import TodoList from "./todolist/index.jsx";
-import TodoCreator from "./todolist/TodoCreator.jsx";
-import TodoAction from "../actions/todos.js";
+import TodoList from "./todolist/index";
+import TodoCreator from "./todolist/TodoCreator";
+import TodoAction from "../actions/todos";
 
 class Home extends Component {
     state = {
@@ -44,19 +44,17 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-    postTodo: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    postTodo: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     isLoading: state.todos.isLoading
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        postTodo: item => dispatch(TodoAction.postTodo(item))
-    };
-};
+const mapDispatchToProps = dispatch => ({
+    postTodo: item => dispatch(TodoAction.postTodo(item))
+});
 
 export default connect(
     mapStateToProps,

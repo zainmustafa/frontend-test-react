@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TodoDetails from "./TodoDetails.jsx";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
+
+import TodoDetails from "./TodoDetails";
 
 export default class ListItem extends React.Component {
     render() {

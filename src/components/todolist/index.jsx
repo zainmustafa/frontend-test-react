@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import ListItem from "./ListItem.jsx";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Spinner from "../Spinner.jsx";
-import TodoAction from "../../actions/todos.js";
-import TodoDetails from "./TodoDetails.jsx";
+import ListItem from "./ListItem";
+import Spinner from "../Spinner";
+import TodoAction from "../../actions/todos";
 
 class TodoList extends Component {
     constructor() {
@@ -25,7 +24,8 @@ class TodoList extends Component {
                 showSubCategory: !showSubCategory,
                 categoryIndex: -1
             });
-        } else {
+        }
+        else {
             this.setState({
                 showSubCategory: true,
                 categoryIndex: Number(index)
@@ -33,7 +33,7 @@ class TodoList extends Component {
         }
     };
     render() {
-        const { nodeList, isLoading, detailLoading, updateTodo } = this.props;
+        const { nodeList, detailLoading } = this.props;
         const { showSubCategory, categoryIndex } = this.state;
         return (
             <div className="todolist">
@@ -58,23 +58,21 @@ class TodoList extends Component {
     }
 }
 TodoList.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
+    detailLoading: PropTypes.bool.isRequired,
+    getAllNotes: PropTypes.func.isRequired,
     nodeList: PropTypes.array.isRequired,
-    detailLoading: PropTypes.bool.isRequired
+    updateTodo: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     detailLoading: state.todos.detailLoading,
-    isLoading: state.todos.isLoading,
     nodeList: state.todos.nodeList
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getAllNotes: () => dispatch(TodoAction.getAllNotes()),
-        updateTodo: todo => dispatch(TodoAction.updateTodo(todo))
-    };
-};
+const mapDispatchToProps = dispatch => ({
+    getAllNotes: () => dispatch(TodoAction.getAllNotes()),
+    updateTodo: todo => dispatch(TodoAction.updateTodo(todo))
+});
 
 export default connect(
     mapStateToProps,

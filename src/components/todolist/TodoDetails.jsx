@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import TodoAction from "../../actions/todos.js";
+import TodoAction from "../../actions/todos";
 
 class TodoDetails extends Component {
     componentDidMount() {
@@ -32,16 +33,20 @@ class TodoDetails extends Component {
     }
 }
 
+TodoDetails.propTypes = {
+    getTodoDetails: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    nodeDetail: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
     detailLoading: state.todos.detailLoading,
     nodeDetail: state.todos.nodeDetail
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getTodoDetails: state => dispatch(TodoAction.getTodoDetails(state))
-    };
-};
+const mapDispatchToProps = dispatch => ({
+    getTodoDetails: state => dispatch(TodoAction.getTodoDetails(state))
+});
 
 export default connect(
     mapStateToProps,

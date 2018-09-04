@@ -1,6 +1,6 @@
-import ActionType from "../actions/actionsTypes.js";
-import { post, get, put } from "../utils/apiCall.js";
-import { actionDispatch } from "../utils/returnObj.js";
+import ActionType from "../actions/actionsTypes";
+import { post, get, put } from "../utils/apiCall";
+import { actionDispatch } from "../utils/returnObj";
 
 export default class TodoAction {
     /**
@@ -74,7 +74,7 @@ export default class TodoAction {
     }
 
     static updateTodo(node) {
-        let obj = {
+        const obj = {
             isDone: !node.isDone
         };
         node.isDone = !node.isDone;
