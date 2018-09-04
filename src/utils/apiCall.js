@@ -2,8 +2,8 @@ const API_URL = "https://backend.pi-top.com/todo-test/v1/todos";
 
 function processRequest(request) {
     return request
-        .then(response => response.json())
-        .then(json => json)
+        .then(res => res.json())
+        .then(res => res)
         .catch(error => {
             throw error;
         });
@@ -20,6 +20,7 @@ export function get(id) {
 export function post(body) {
     const request = fetch(API_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: {
             "Content-Type": "application/json"
         },
