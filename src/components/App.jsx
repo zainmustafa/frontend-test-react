@@ -7,9 +7,8 @@ import Home from "./Home.jsx";
 
 const App = ({ store }) => (
     <Provider store={store}>
-        <div>
+        <div className="app">
             <Header/>
-            <div className="view">Some todos should be here</div>
             <Home/>
         </div>
     </Provider>
