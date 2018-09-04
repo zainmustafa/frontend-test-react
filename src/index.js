@@ -2,8 +2,7 @@ import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./css/app.scss";
-import "./css/header.scss";
+import "./css/index.scss";
 import App from "./components/App.jsx";
 import store from "./store";
 
