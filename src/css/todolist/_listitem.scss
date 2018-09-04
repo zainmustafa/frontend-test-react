@@ -1,0 +1,40 @@
+.listitem {
+    background-color: white;
+    max-width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px solid #3f496d;
+    cursor: pointer;
+    transition: 0.5s background-color;
+
+    &:hover {
+        background-color: #ececec;
+        transition: 0.5s background-color;
+    }
+
+    &:last-child {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    &-left {
+        display: flex;
+        flex-direction: column;
+        &-date {
+            color: gray;
+            font-size: 0.7rem;
+        }
+        &-title {
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+    }
+
+    &-right {
+        &-check {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
