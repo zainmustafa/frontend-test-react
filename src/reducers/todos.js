@@ -6,13 +6,13 @@ const initialState = {
     detailLoading: false,
     nodeList: [],
     nodeDetail: {
-        id : "",
-        title : "",
-        description :"",
-        priority : 1,
-        tag : [],
-        createdAt : "",
-        isDone : false
+        id: "",
+        title: "",
+        description: "",
+        priority: 1,
+        tag: [],
+        createdAt: "",
+        isDone: false
     }
 };
 
@@ -31,19 +31,23 @@ export default (state = initialState, action) => {
 
         case ActionType.GET_TODO_FAIL:
             return { ...state, isLoading: false };
-        
+
         // Get Note Details
         case ActionType.GET_TODO_DETAIL:
             const tempNodeDetail = {
-                id : "",
-                title : "",
-                description :"",
-                priority : 1,
-                tag : [],
-                createdAt : "",
-                isDone : false
-            }
-            return { ...state, nodeDetail : tempNodeDetail, detailLoading: true };
+                id: "",
+                title: "",
+                description: "",
+                priority: 1,
+                tag: [],
+                createdAt: "",
+                isDone: false
+            };
+            return {
+                ...state,
+                nodeDetail: tempNodeDetail,
+                detailLoading: true
+            };
 
         case ActionType.GET_TODO_DETAIL_SUCCESS:
             return {
@@ -53,6 +57,34 @@ export default (state = initialState, action) => {
             };
 
         case ActionType.GET_TODO_DETAIL_FAIL:
+            return { ...state, detailLoading: false };
+
+        // Post Notes
+        case ActionType.POST_TODO:
+            return { ...state, isLoading: true };
+
+        case ActionType.POST_TODO_SUCCESS:
+            return {
+                ...state,
+                nodeList: [...state.nodeList, action.payload],
+                isLoading: false
+            };
+
+        case ActionType.POST_TODO_FAIL:
+            return { ...state, isLoading: false };
+
+        // Update Notes
+        case ActionType.UPDATE_TODO:
+            return { ...state, detailLoading: true };
+
+        case ActionType.UPDATE_TODO_SUCCESS: {
+            return {
+                ...state,
+                detailLoading: false
+            };
+        }
+
+        case ActionType.UPDATE_TODO_FAIL:
             return { ...state, detailLoading: false };
 
         default:
