@@ -1,0 +1,17 @@
+.tododetails {
+    max-width: 100%;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-bottom: 5px solid #3f496d;
+    font-size: 14px;
+
+    &-inner-item {
+        margin-bottom: 10px;
+
+        span {
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    }
+}
