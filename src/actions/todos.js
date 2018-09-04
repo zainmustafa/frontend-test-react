@@ -1,5 +1,5 @@
 import ActionType from "../actions/actionsTypes.js";
-import { post, get } from "../utils/apiCall.js";
+import { post, get, put } from "../utils/apiCall.js";
 import { actionDispatch } from "../utils/returnObj.js";
 
 export default class TodoAction {
@@ -30,46 +30,68 @@ export default class TodoAction {
     |--------------------------------------------------
     */
 
-   static getTodoDetails(id) {
-    return dispatch => {
-        dispatch(actionDispatch(ActionType.GET_TODO_DETAIL));
-        get(id)
-            .then(response => {
-                dispatch(
-                    actionDispatch(ActionType.GET_TODO_DETAIL_SUCCESS, response)
-                );
-            })
-            .catch(error => {
-                dispatch(actionDispatch(ActionType.GET_TODO_DETAIL_FAIL, error));
-            });
-    };
-}
-
-
-    /**
-    |--------------------------------------------------
-    | Post Todo
-    |--------------------------------------------------
-    */
-
-    static postTodo(note) {
+    static getTodoDetails(id) {
         return dispatch => {
-            dispatch(actionDispatch(ActionType.GET_));
-            post(note)
+            dispatch(actionDispatch(ActionType.GET_TODO_DETAIL));
+            get(id)
                 .then(response => {
-                    if (response.error) {
-                        throw response.error;
-                    }
                     dispatch(
                         actionDispatch(
-                            ActionType.GET_CUSTOMERS_SUCCESS,
+                            ActionType.GET_TODO_DETAIL_SUCCESS,
                             response
                         )
                     );
                 })
                 .catch(error => {
                     dispatch(
-                        actionDispatch(ActionType.GET_CUSTOMERS_FAIL, error)
+                        actionDispatch(ActionType.GET_TODO_DETAIL_FAIL, error)
+                    );
+                });
+        };
+    }
+
+    /**
+    |--------------------------------------------------
+    | Post Todo
+    |--------------------------------------------------
+    */
+    static postTodo(note) {
+        return dispatch => {
+            dispatch(actionDispatch(ActionType.POST_TODO));
+            post(note)
+                .then(response => {
+                    if (response.error) {
+                        throw response.error;
+                    }
+                    dispatch(
+                        actionDispatch(ActionType.POST_TODO_SUCCESS, response)
+                    );
+                })
+                .catch(error => {
+                    dispatch(actionDispatch(ActionType.POST_TODO_FAIL, error));
+                });
+        };
+    }
+
+    static updateTodo(node) {
+        let obj = {
+            isDone: !node.isDone
+        };
+        node.isDone = !node.isDone;
+        return dispatch => {
+            dispatch(actionDispatch(ActionType.UPDATE_TODO));
+            put(obj, node.id)
+                .then(response => {
+                    if (response.error) {
+                        throw response.error;
+                    }
+                    dispatch(
+                        actionDispatch(ActionType.UPDATE_TODO_SUCCESS, response)
+                    );
+                })
+                .catch(error => {
+                    dispatch(
+                        actionDispatch(ActionType.UPDATE_TODO_FAIL, error)
                     );
                 });
         };
