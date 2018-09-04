@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 
 import "./css/app.scss";
 import "./css/header.scss";
-import App from "./components/App";
+import App from "./components/App.jsx";
 import store from "./store";
 
 ReactDOM.render(
