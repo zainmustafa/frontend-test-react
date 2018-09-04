@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 
 export default class TodoCreator extends Component {
+    state = {
+        title: "",
+        description: "",
+        priority: 1,
+        tags: ""
+    };
+
+    handleChange = e => {
+        const state = this.state;
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+    };
+
     render() {
+        const { title, description, tags } = this.state;
         return (
             <div className="todo-creator">
                 <form className="todo-creator-form">
@@ -11,14 +25,24 @@ export default class TodoCreator extends Component {
                             Title
                         </span>
                         <br />
-                        <input type="text" name="title" />
+                        <input
+                            type="text"
+                            name="title"
+                            value={title}
+                            onChange={this.handleChange}
+                        />
                     </div>
                     <div className="todo-creator-form-input">
                         <span className="todo-creator-form-input-label">
                             Description
                         </span>
                         <br />
-                        <input type="text" name="description" />
+                        <input
+                            type="text"
+                            name="description"
+                            value={description}
+                            onChange={this.handleChange}
+                        />
                     </div>
 
                     <div className="todo-creator-form-input">
@@ -26,7 +50,7 @@ export default class TodoCreator extends Component {
                             Priority
                         </span>
                         <br />
-                        <select name="priority">
+                        <select name="priority" onChange={this.handleChange}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -40,13 +64,14 @@ export default class TodoCreator extends Component {
                             Tags (Seperated by commas)
                         </span>
                         <br />
-                        <input type="text" name="tags" />
+                        <input type="text" name="tags" value={tags} onChange={this.handleChange} />
                     </div>
                     <div className="todo-creator-form-input">
                         <button
                             className="todo-creator-form-btn"
                             name="add"
                             type="button"
+                            onClick={this.props.toggleModal}
                         >
                             Add
                         </button>
