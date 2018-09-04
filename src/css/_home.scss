@@ -1,0 +1,41 @@
+.home {
+    width: 50vw;
+    margin: 0 auto;
+    margin-top: 15px;
+
+    &-header {
+        display: flex;
+
+        &-text {
+            color: #ffffff;
+            background-color: #191e2e;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 2px;
+            flex: 3;
+        }
+
+        &-btn {
+            flex: 1;
+            cursor: pointer;
+            background-color: #3f496d;
+            color: white;
+            border: none;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.5s background-color;
+
+            &:hover {
+                background-color: #2a314b;
+                color: white;
+                transition: 0.5s background-color;
+            }
+        }
+    }
+}
