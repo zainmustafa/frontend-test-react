@@ -1,9 +1,8 @@
+import ActionType from "../actions/actionsTypes.js";
+import { post, get } from "../utils/apiCall.js";
+import { actionDispatch } from "../utils/returnObj.js";
 
-import { ActionType } from "../actions/actionsTypes";
-import { post, get } from "../utils/apiCall";
-import { actionDispatch } from "../utils/returnObj";
-
-export default class ActionType {
+export default class TodoAction {
     /**
     |--------------------------------------------------
     | Get TODO List
@@ -11,13 +10,15 @@ export default class ActionType {
     */
 
     static getAllNotes() {
+        console.log('here');
         return dispatch => {
+            console.log({ActionType});
+            debugger;
             dispatch(actionDispatch(ActionType.GET_TODO));
-            get("/GetClasses")
+            get()
                 .then(response => {
-                    if (response.error) {
-                        throw response.error;
-                    }
+                    console.log(response);
+
                     dispatch(
                         actionDispatch(
                             ActionType.GET_TODO_SUCCESS,
@@ -26,28 +27,21 @@ export default class ActionType {
                     );
                 })
                 .catch(error => {
-                    dispatch(
-                        actionDispatch(
-                            ActionType.GET_TODO_FAIL,
-                            error
-                        )
-                    );
+                    dispatch(actionDispatch(ActionType.GET_TODO_FAIL, error));
                 });
         };
     }
-    
+
     /**
     |--------------------------------------------------
     | TODO Actions
     |--------------------------------------------------
     */
 
-    static getAllNotes() {
+    static getAllNotes(note) {
         return dispatch => {
             dispatch(actionDispatch(ActionType.GET_));
-            let form = new FormData();
-            form.append("username", username);
-            post("/customer", form)
+            post(note)
                 .then(response => {
                     if (response.error) {
                         throw response.error;
