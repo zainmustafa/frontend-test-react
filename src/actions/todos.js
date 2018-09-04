@@ -10,20 +10,12 @@ export default class TodoAction {
     */
 
     static getAllNotes() {
-        console.log('here');
         return dispatch => {
-            console.log({ActionType});
-            debugger;
             dispatch(actionDispatch(ActionType.GET_TODO));
             get()
                 .then(response => {
-                    console.log(response);
-
                     dispatch(
-                        actionDispatch(
-                            ActionType.GET_TODO_SUCCESS,
-                            response.classes
-                        )
+                        actionDispatch(ActionType.GET_TODO_SUCCESS, response)
                     );
                 })
                 .catch(error => {
@@ -38,7 +30,7 @@ export default class TodoAction {
     |--------------------------------------------------
     */
 
-    static getAllNotes(note) {
+    static getAllNotes1(note) {
         return dispatch => {
             dispatch(actionDispatch(ActionType.GET_));
             post(note)
@@ -54,7 +46,6 @@ export default class TodoAction {
                     );
                 })
                 .catch(error => {
-                    console.log("error", error);
                     dispatch(
                         actionDispatch(ActionType.GET_CUSTOMERS_FAIL, error)
                     );
