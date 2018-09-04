@@ -1,0 +1,67 @@
+.todo-creator {
+    width: 100%;
+    background-color: #3f496d;
+
+    &-form {
+        padding: 30px 10px;
+        color: white;
+
+        h2 {
+            text-align: center;
+        }
+
+        &-input {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            
+
+            &-label {
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #dfdfdf;
+            }
+
+            input {
+                width: 100%;
+                padding: 5px;
+            }
+
+            select {
+                width: 100%;
+                padding: 5px;
+            }
+        }
+
+        &-btn {
+            cursor: pointer;
+            float: right;
+            background-color: white;
+            color: #3f496d;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.5s background-color;
+
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+                float: none;
+            }
+        }
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+            float: none;
+        }
+    }
+
+}
