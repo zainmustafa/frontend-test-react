@@ -30,7 +30,7 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "config/webpack.config.base.js"
+        "config": "webpack.config.js"
       }
     },
     "flowtype": {
