@@ -33,7 +33,7 @@ class TodoDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.todos.isLoading,
+    detailLoading: state.todos.detailLoading,
     nodeDetail: state.todos.nodeDetail
 });
 

@@ -3,6 +3,7 @@ import ActionType from "../actions/actionsTypes.js";
 
 const initialState = {
     isLoading: false,
+    detailLoading: false,
     nodeList: [],
     nodeDetail: {
         id : "",
@@ -42,17 +43,17 @@ export default (state = initialState, action) => {
                 createdAt : "",
                 isDone : false
             }
-            return { ...state, nodeDetail : tempNodeDetail, isLoading: true };
+            return { ...state, nodeDetail : tempNodeDetail, detailLoading: true };
 
         case ActionType.GET_TODO_DETAIL_SUCCESS:
             return {
                 ...state,
                 nodeDetail: action.payload,
-                isLoading: false
+                detailLoading: false
             };
 
         case ActionType.GET_TODO_DETAIL_FAIL:
-            return { ...state, isLoading: false };
+            return { ...state, detailLoading: false };
 
         default:
             return state;
