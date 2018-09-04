@@ -2,7 +2,7 @@
   "name": "frontend-test-react",
   "version": "1.0.0",
   "description": "Technical test for Frontend Engineer position at pi-top",
-  "main": "index.js",
+  "main": "index.jsx",
   "repository": "https://github.com/pi-top/frontend-test-react.git",
   "license": "MIT",
   "scripts": {
